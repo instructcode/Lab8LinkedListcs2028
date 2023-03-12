@@ -7,14 +7,14 @@ using namespace std;
 template <typename T>
 class Node {
 public:
-	Node();
+	Node(T inval, Node* hinter);
 	~Node();
-private:
-protected:
 	Node* prev;
 	Node* next;
 	//Node* root;
 	//Node * tail;
 	T data;
+private:
+protected:
 };
 #endif
