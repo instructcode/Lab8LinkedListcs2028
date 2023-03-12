@@ -16,7 +16,7 @@ public:
 	LinkedList();
 	~LinkedList();
 	void AddItem(T);
-	T GetItem();
+	T GetItem(T item, Node<T>* ptr);
 	bool IsInList(T);
 	bool IsEmpty();
 	int Size();

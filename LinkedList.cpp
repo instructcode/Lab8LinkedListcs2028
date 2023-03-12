@@ -61,13 +61,34 @@ void LinkedList<T>::Display() {
 
 
 template <typename T>
-T LinkedList<T>::GetItem(){}
+T LinkedList<T>::GetItem(T item, Node<T>* ptr) {
+		//recursion
+
+		if (ptr != nullptr && ptr->data < item) {
+			if (ptr->next != nullptr) {
+				return GetItem(item, ptr->next);
+			}
+			else {
+				return NULL;
+			}
+		}
+		else if (ptr != nullptr && ptr->data == item) {
+			return ptr->data;
+		}
+		else {
+			return NULL;
+		}}
 template <typename T>
 bool LinkedList<T>::IsInList(T){
-
+	return Transverse();
 }
 template <typename T>
-bool LinkedList<T>::IsEmpty(){}
+bool LinkedList<T>::IsEmpty(){
+	if (length == 0)
+		return true;
+	else
+		return false;
+}
 template <typename T>
 int LinkedList<T>::Size(){}
 template <typename T>
@@ -123,7 +144,16 @@ void LinkedList<T>::NotYetMergeSort(){
 		}
 	}
 }
+/*
 
+split(&head,&length/2,&length/2+1,&tail)
+if(there is more than 2 items betqeen a and b)
+split
+exist merge conditions
+order
+merge
+
+*/
 
 template <typename T>
 bool LinkedList<T>::Transverse(T item, Node<T>* ptr) {
