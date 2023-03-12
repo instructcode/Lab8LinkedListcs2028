@@ -3,7 +3,7 @@
 using namespace std;
 //constructor
 template <typename T>
-Node<T>::Node(T inval, Node* hinter) {
+Node<T>::Node(T* inval, Node* hinter) {
 
 	data = inval;
 	if (hinter == nullptr) {

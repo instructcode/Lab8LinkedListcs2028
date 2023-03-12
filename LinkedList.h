@@ -15,20 +15,20 @@ class LinkedList/*Node*/ {
 public:
 	LinkedList();
 	~LinkedList();
-	void AddItem(T);
-	T GetItem(T item, Node<T>* ptr);
-	bool IsInList(T);
+	void AddItem(T* item);
+	Node<T>* GetItem(T* item, Node<T>* ptr);
+	bool IsInList(T* item);
 	bool IsEmpty();
 	int Size();
-	T SeeNext(T);
-	T SeePrev(T);
-	T SeeAt(T*);
+	T* SeeNext(T* item);
+	T* SeePrev(T* item);
+	T* SeeAt(T*);
 	void Reset();
 	void Swap(Node<T>* ptr1, Node<T>* ptr2);
 	//add function printlist()
 	void NotYetMergeSort();
 	void Display();
-	bool Transverse(T item, Node<T>* ptr);
+	bool Transverse(T* item, Node<T>* ptr);
 
 
 	Node<T>* tail;

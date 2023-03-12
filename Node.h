@@ -7,13 +7,13 @@ using namespace std;
 template <typename T>
 class Node {
 public:
-	Node(T inval, Node* hinter);
+	Node(T* inval, Node* hinter);
 	~Node();
 	Node* prev;
 	Node* next;
 	//Node* root;
 	//Node * tail;
-	T data;
+	T* data;
 private:
 protected:
 };
