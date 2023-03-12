@@ -80,7 +80,7 @@ T LinkedList<T>::GetItem(T item, Node<T>* ptr) {
 		}}
 template <typename T>
 bool LinkedList<T>::IsInList(T){
-	return Transverse();
+	return Transverse(T, head);
 }
 template <typename T>
 bool LinkedList<T>::IsEmpty(){
