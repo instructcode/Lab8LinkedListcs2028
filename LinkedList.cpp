@@ -10,7 +10,7 @@ LinkedList<T>::LinkedList(){
 	head = nullptr;
 	tail = nullptr;
 	length = 0;
-	iterator = 0;
+	iterator = nullptr;
 }
 //destructor
 template <typename T>
@@ -33,12 +33,17 @@ NumberList.cpp
 template <typename T>
 void LinkedList<T>::AddItem(T* inval){
 	//so far this is unordered
-
+	//activates iterator
+	if (length > 0&& iterator ==nullptr)
+		iterator = head;
 	if (length == 0) {
 		//Node<T>* temp = tail;
 		tail = new Node<T>(inval, tail);
 		head = tail;
 		length++;
+		//activates iterator
+		if (length > 0 && iterator == nullptr)
+			iterator = head;
 	}
 	else {
 		Node<T>* temp = tail;
@@ -94,6 +99,7 @@ Node<T>* LinkedList<T>::GetItem(T* item, Node<T>* ptr) {
 			//do for all types of these functions
 			Node<T>* temp;
 			if (ptr == head && ptr == tail) {
+				iterator == nullptr;
 				temp = PointerSwap3(ptr);
 			}
 			else if (ptr == head) { //using tenary operator, but standard bool type castedworks too

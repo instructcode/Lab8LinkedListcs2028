@@ -3,6 +3,8 @@
 #include "LinkedList.cpp"
 #include "Node.h"
 #include "Node.cpp"
+//#include "Task2Class.h"
+//#include "Task2Class.cpp"
 
 using namespace std;
 
@@ -12,13 +14,14 @@ int main() {
 	//commented code tests parts of the code as I go
 	/**/
 	/**/
-	/*   CODE MOSTLY WORKS BUT FAILS WHEN YAH START MANIPULATING THINGS AT THE START OR END OF THE LIST */
+	/*    */
 	/**/
 	//
 	//TODO:
 	//1. 
-	//2. RESET
-	//3.  FINISH SEENExt/PREV/AT functions
+	//2. RESET   use it
+	//3.  MAKE SURE WHEN SEENEXT and functions thats can transverse past the end of the list
+	// behave properly when such things happen
 	//
 
 	LinkedList<int>* list = new LinkedList<int>();
@@ -83,6 +86,13 @@ int main() {
 	temp = list -> SeeAt(new int(504), list->head);
 	cout << " Temp = " << *temp->data << endl;
 	list->Display();
+	int* temp3;
+	temp3 = list->SeeNext();
+	cout << " Temp = " << *temp3 << endl;
+	temp3 = list->SeeNext();
+	cout << " Temp = " << *temp3 << endl;
+	temp3 = list->SeePrev();
+	cout << " Temp = " << *temp3 << endl;
 	list->Display();
 
 	return 0;
