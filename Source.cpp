@@ -16,7 +16,7 @@ int main() {
 	/**/
 	//
 	//TODO:
-	//1.implement REMOVE ITEM FOR SINGLE NODE LIST  (WHERE SWAP HAPPENS) in GETITEM
+	//1. 
 	//2. RESET
 	//3.  FINISH SEENExt/PREV/AT functions
 	//
@@ -31,6 +31,7 @@ int main() {
 	if (BUGSFIXED) {
 		temp = list->GetItem(new int(7), list->head);
 		cout << " Temp = " << *temp->data << endl;
+		delete temp->data;
 		delete temp;
 		temp = nullptr;
 		list->Display();
@@ -55,6 +56,7 @@ int main() {
 	//int* temp2;
 	temp = list->GetItem(new int(486), list->head);
 	cout << " Temp = " << *temp->data << endl;
+	delete temp->data;
 	delete temp;
 	temp = nullptr;
 	list->Display();
@@ -62,6 +64,7 @@ int main() {
 	if (BUGSFIXED) {
 	temp = list->GetItem(new int(2), list->head);
 	cout << " Temp = " << *temp->data << endl;
+	delete temp->data;
 	delete temp;
 	temp = nullptr;
 	list->Display();
@@ -69,6 +72,7 @@ int main() {
 	if (BUGSFIXED) {
 		temp = list->GetItem(new int(600), list->head);
 		cout << " Temp = " << *temp->data << endl;
+		delete temp->data;
 		delete temp;
 		temp = nullptr;
 		list->Display();

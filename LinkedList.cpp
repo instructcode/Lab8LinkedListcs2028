@@ -134,7 +134,7 @@ int LinkedList<T>::Size() {
 
 
 template <typename T>
-T* LinkedList<T>::SeeNext(T* item, Node<T>* ptr) {
+T* LinkedList<T>::SeeNext() {
 /*
 SeeNext – returns the item without removing it from the list at a given
 location in the list. The class will maintain the next location and will start
@@ -144,18 +144,19 @@ will throw an error. 2 calls to SeeNext will return the 2 items next to each
 other in the list unless SeeAt or Reset is called in between the 2 calls (or
 the first call returns the last item in the list).
 */
-	if (ptr != nullptr && *ptr->data < *item) {
-		if (ptr->next != nullptr) {
-			return SeeAt(item, ptr->next);
+	if (iterator != nullptr) {
+		if (iterator->next != nullptr) {
+			iterator = iterator->next;
+			return iterator->data;
 		}
 		else {
 			throw "ListNotFlow";
 			return nullptr;
 		}
 	}
-	else if (ptr != nullptr && *ptr->data == *item) {
-		return ptr;
-	}
+	//else if (ptr != nullptr) {
+	//	return ptr;
+	//}
 	else {
 		throw "ListNotFlow";
 		return nullptr;
@@ -164,8 +165,25 @@ the first call returns the last item in the list).
 }
 
 template <typename T>
-T* LinkedList<T>::SeePrev(T* item){
+T* LinkedList<T>::SeePrev(){
 //SeePrev – Same as SeeNext except in the other direction.
+	if (iterator != nullptr) {
+		if (iterator->prev != nullptr) {
+			iterator = iterator->prev;
+			return iterator->data;
+		}
+		else {
+			throw "ListNotFlow";
+			return nullptr;
+		}
+	}
+	//else if (ptr != nullptr) {
+	//	return ptr;
+	//}
+	else {
+		throw "ListNotFlow";
+		return nullptr;
+	}
 }
 
 
@@ -203,6 +221,7 @@ template <typename T>
 void LinkedList<T>::Reset(){
 //Reset – resets the location that the SeeNext function uses to point at the
 //	first item in the list.
+	iterator = head;
 }
 
 template <typename T>
@@ -285,15 +304,7 @@ Node<T>* LinkedList<T>::PointerSwap(Node<T>* ptr1, Node<T>* ptr2) {
 
 
 }
-//*****************************************************
-//THIS FUNCTION IS NOT WORKING
-//*****************************************************
-//this is a mess. cause there are like 4 conditions
-//condition if length ==1
-//condition if length ==2
-//condition if removing first or last item 
-// so there arent sandwiched conditions
-//
+
 template <typename T>
 Node<T>* LinkedList<T>::PointerSwap2(Node<T>* ptr1, Node<T>* ptr2, int removeindex) {
 	//changes pointers of first two or last two items
@@ -343,12 +354,7 @@ Node<T>* LinkedList<T>::PointerSwap2(Node<T>* ptr1, Node<T>* ptr2, int removeind
 
 		}
 	}
-	//this should remove the pointers to a middle item between and from
-	//and the two sandwiching items should point to each other
-	//basically if the two sandwiching items don't exist
-	//there should be conditionals to handle these cases
-	//they would be end or start of list
-
+	
 
 
 template <typename T>

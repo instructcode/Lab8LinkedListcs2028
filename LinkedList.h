@@ -20,8 +20,8 @@ public:
 	bool IsInList(T* item);
 	bool IsEmpty();
 	int Size();
-	T* SeeNext(T* item, Node<T>* ptr);
-	T* SeePrev(T* item);
+	T* SeeNext();
+	T* SeePrev();
 	Node<T>* SeeAt(T*, Node<T>* ptr);
 	void Reset();
 	Node<T>* PointerSwap(Node<T>* ptr1, Node<T>* ptr2);
