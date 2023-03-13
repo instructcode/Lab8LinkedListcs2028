@@ -93,7 +93,10 @@ Node<T>* LinkedList<T>::GetItem(T* item, Node<T>* ptr) {
 			//that swap
 			//do for all types of these functions
 			Node<T>* temp;
-			if (ptr == head) { //using tenary operator, but standard bool type castedworks too
+			if (ptr == head && ptr == tail) {
+				temp = PointerSwap3(ptr);
+			}
+			else if (ptr == head) { //using tenary operator, but standard bool type castedworks too
 				temp = PointerSwap2(ptr, ptr->next, 0);
 			}
 			else if (ptr == tail) {
@@ -349,11 +352,21 @@ Node<T>* LinkedList<T>::PointerSwap2(Node<T>* ptr1, Node<T>* ptr2, int removeind
 
 
 template <typename T>
-Node<T>* LinkedList<T>::PointerSwap3(Node<T>* ptr1, Node<T>* ptr2, int removeindex) {
+Node<T>* LinkedList<T>::PointerSwap3(Node<T>* ptr1) {
 	//for length ==1;
 	//either removes tail or where head leads to
 
+	if (head == tail)
+	{
+		Node<T>* temp = head;
+		head = nullptr;
+		tail = nullptr;
+		temp->next = nullptr;
+		temp->prev = nullptr;
+		length--;
+		return temp;
 
+	}
 
 }
 template <typename T>

@@ -22,6 +22,20 @@ int main() {
 	//
 
 	LinkedList<int>* list = new LinkedList<int>();
+	Node<int>* temp;
+	bool BUGSFIXED = true;
+
+
+	list->AddItem(new int(7));
+	list->Display();
+	if (BUGSFIXED) {
+		temp = list->GetItem(new int(7), list->head);
+		cout << " Temp = " << *temp->data << endl;
+		delete temp;
+		temp = nullptr;
+		list->Display();
+	}
+
 	list->AddItem(new int(7));
 	list->AddItem(new int(2));
 	list->AddItem(new int(3));
@@ -30,19 +44,21 @@ int main() {
 		list->AddItem(new int(i * 6));
 	}
 	list->Display();
+
+
 	bool yes;
 	yes = list->Transverse(new int(594), list->head);
 	cout << yes << endl;
 	list->NotYetMergeSort();
 	list->Display();
-	Node<int>* temp;
+
 	//int* temp2;
 	temp = list->GetItem(new int(486), list->head);
 	cout << " Temp = " << *temp->data << endl;
 	delete temp;
 	temp = nullptr;
 	list->Display();
-	bool BUGSFIXED = true;
+
 	if (BUGSFIXED) {
 	temp = list->GetItem(new int(2), list->head);
 	cout << " Temp = " << *temp->data << endl;

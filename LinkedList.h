@@ -26,7 +26,7 @@ public:
 	void Reset();
 	Node<T>* PointerSwap(Node<T>* ptr1, Node<T>* ptr2);
 	Node<T>* PointerSwap2(Node<T>* ptr1, Node<T>* ptr2, int removeindex);
-	Node<T>* PointerSwap3(Node<T>* ptr1, Node<T>* ptr2, int removeindex);
+	Node<T>* PointerSwap3(Node<T>* ptr1);
 	void Swap(Node<T>* ptr1, Node<T>* ptr2);
 	//add function printlist()
 	void NotYetMergeSort();
