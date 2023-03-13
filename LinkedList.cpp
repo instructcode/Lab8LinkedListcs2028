@@ -33,7 +33,6 @@ NumberList.cpp
 template <typename T>
 void LinkedList<T>::AddItem(T* inval){
 	//so far this is unordered
-	//make sure the prev pointers that's at the start points to null
 
 	if (length == 0) {
 		//Node<T>* temp = tail;
@@ -45,6 +44,7 @@ void LinkedList<T>::AddItem(T* inval){
 		Node<T>* temp = tail;
 		tail = new Node<T>(inval, tail);
 		temp->next = tail;
+		//okay this works so long as stuff is always added to tail
 		length++;
 	}
 	//then do some ordering operation like merge sort
@@ -93,16 +93,22 @@ Node<T>* LinkedList<T>::GetItem(T* item, Node<T>* ptr) {
 			//that swap
 			//do for all types of these functions
 			Node<T>* temp;
-			if(ptr==head||ptr==tail) //using tenary operator, but standard bool type castedworks too
-			temp = PointerSwap2(ptr->prev, ptr->next, (ptr==head ? 1: 0));
+			if (ptr == head) { //using tenary operator, but standard bool type castedworks too
+				temp = PointerSwap2(ptr, ptr->next, 0);
+			}
+			else if (ptr == tail) {
+				temp = PointerSwap2(ptr->prev, ptr, 1);
+			}
 			//if this is sandwiched pointer
-			else
-			temp = PointerSwap(ptr->prev,ptr->next);
+			else {
+			temp = PointerSwap(ptr->prev, ptr->next);
+		}
 			return temp;
 		}
 		else {
 			return nullptr;
-		}}
+		}
+}
 
 
 template <typename T>
@@ -322,7 +328,7 @@ Node<T>* LinkedList<T>::PointerSwap2(Node<T>* ptr1, Node<T>* ptr2, int removeind
 				Node<T>* Temp = tail;
 				tail = ptr1;
 				ptr1->next = nullptr;
-				//THIS IS WHERE IT BREAKS WHEN YAH REMOVE ITEMS AT BEGINNING OR END OF LIST
+				//THIS IS WHERE IT BREAKS WHEN YAH REMOVE 
 				ptr2->next = nullptr;
 				ptr2->prev = nullptr;
 

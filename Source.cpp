@@ -45,12 +45,7 @@ int main() {
 	delete temp;
 	temp = nullptr;
 	list->Display();
-	bool BUGSFIXED = false;
-	//**************************************************
-	// BIG PROBLEM.  CODE ISN't DESIGNED TO REMOVE HEAD OR TAIL POINTERS 
-	// cause they are treated as nodes, not pointers in cases where they shouldnt be 
-	// They are assumed to have ->prev and ->next when they dont necessarily do
-	// fix!!!!!!!!!!!!!  bug is embedded everywhere unfortunately
+	bool BUGSFIXED = true;
 	if (BUGSFIXED) {
 	temp = list->GetItem(new int(2), list->head);
 	cout << " Temp = " << *temp->data << endl;
