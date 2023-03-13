@@ -85,7 +85,19 @@ Node<T>* LinkedList<T>::GetItem(T* item, Node<T>* ptr) {
 			//PROBLEM
 			//WHAT IF ITEM THATS GOTTEN IS HEAD PTR OR TAIL and theres 1 or 2
 			//THIS NEXT FUNCTION ONLY WORKS ON SANDWICHED PTRS
-			Node<T>* temp = PointerSwap(ptr->prev,ptr->next);
+
+			//ok
+			//make a umbrella function that swaps
+			//have umbrella function contains conditions
+			// that call specific case functions
+			//that swap
+			//do for all types of these functions
+			Node<T>* temp;
+			if(ptr==head||ptr==tail) //using tenary operator, but standard bool type castedworks too
+			temp = PointerSwap2(ptr->prev, ptr->next, (ptr==head ? 1: 0));
+			//if this is sandwiched pointer
+			else
+			temp = PointerSwap(ptr->prev,ptr->next);
 			return temp;
 		}
 		else {
@@ -225,13 +237,13 @@ Node<T>* LinkedList<T>::PointerSwap(Node<T>* ptr1, Node<T>* ptr2) {
 	// //prev point that leads to head should never point to head. thats dumb
 	//********************************************************
 	//
-	if (ptr1 == head && length==0) {//or if 1st pointer or 2nd pointer null pointers
+	if (ptr1 == head && length == 0) {//or if 1st pointer or 2nd pointer null pointers
 		return nullptr;
 	}
-	else if (ptr1 == head && length==1) {
+	else if (ptr1 == head && length == 1) {
 		return nullptr;
 	}
-	else if (ptr1->next == tail && tail!=nullptr) {
+	else if (ptr1->next == tail && tail != nullptr) {
 		//***************************************************
 	}
 	else
@@ -261,6 +273,80 @@ Node<T>* LinkedList<T>::PointerSwap(Node<T>* ptr1, Node<T>* ptr2) {
 	//basically if the two sandwiching items don't exist
 	//there should be conditionals to handle these cases
 	//they would be end or start of list
+
+
+}
+//*****************************************************
+//THIS FUNCTION IS NOT WORKING
+//*****************************************************
+//this is a mess. cause there are like 4 conditions
+//condition if length ==1
+//condition if length ==2
+//condition if removing first or last item 
+// so there arent sandwiched conditions
+//
+template <typename T>
+Node<T>* LinkedList<T>::PointerSwap2(Node<T>* ptr1, Node<T>* ptr2, int removeindex) {
+	//changes pointers of first two or last two items
+	//returns the item removed
+	if (ptr1 == head && length==0) {//or if 1st pointer or 2nd pointer null pointers
+		return nullptr;
+	}
+	else if (ptr1 == head && length==1) {
+		return nullptr;
+	}
+	else {
+		
+			if (removeindex == 0&&head ==ptr1) {
+				//might need to insure head is explicitly changed
+				//Node<T>* Temp2 = ptr1->next;
+				//ptr1->next = ptr2;
+				//ptr2->prev = ptr1;
+
+				Node<T>* Temp = head;
+				head = ptr2;
+				ptr2->prev = nullptr;
+				ptr1 -> next = nullptr;
+				ptr1->prev = nullptr;
+
+				length--;
+				return Temp;
+			}
+			else
+			{
+				//remove index is 1
+				//also implies ptr2 is tail
+				//************************************
+				//what to do when treating head-> prev improperly
+
+				Node<T>* Temp = tail;
+				tail = ptr1;
+				ptr1->next = nullptr;
+				//THIS IS WHERE IT BREAKS WHEN YAH REMOVE ITEMS AT BEGINNING OR END OF LIST
+				ptr2->next = nullptr;
+				ptr2->prev = nullptr;
+
+				length--;
+				return Temp;
+
+			}
+	
+
+		}
+	}
+	//this should remove the pointers to a middle item between and from
+	//and the two sandwiching items should point to each other
+	//basically if the two sandwiching items don't exist
+	//there should be conditionals to handle these cases
+	//they would be end or start of list
+
+
+
+template <typename T>
+Node<T>* LinkedList<T>::PointerSwap3(Node<T>* ptr1, Node<T>* ptr2, int removeindex) {
+	//for length ==1;
+	//either removes tail or where head leads to
+
 
 
 }
