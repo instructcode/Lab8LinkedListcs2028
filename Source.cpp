@@ -16,12 +16,9 @@ int main() {
 	/**/
 	//
 	//TODO:
-	//1.i dont think swap removes work on head and tail
-	// unless head and tail are explicitly fed into the argument
-	// but even if they are, they are acting like the head and tail
-	// are nodes, which is incompatible
-	//2. All cases where head->prev isn't treated as a nullptr
-	//   need to be corrected
+	//1.implement REMOVE ITEM FOR SINGLE NODE LIST  (WHERE SWAP HAPPENS) in GETITEM
+	//2. RESET
+	//3.  FINISH SEENExt/PREV/AT functions
 	//
 
 	LinkedList<int>* list = new LinkedList<int>();
