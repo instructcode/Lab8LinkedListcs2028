@@ -19,7 +19,7 @@ int main() {
 	list->AddItem(new int(7));
 	list->AddItem(new int(2));
 	list->AddItem(new int(3));
-	for (size_t i = 100; i > 0; i--)
+	for (size_t i = 100; i > 80; i--)
 	{
 		list->AddItem(new int(i*6));
 	}
@@ -29,7 +29,20 @@ int main() {
 	cout << yes << endl;
 	list->NotYetMergeSort();
 	list->Display();
-
+	Node<int>* temp;
+	//int* temp2;
+	temp= list->GetItem(new int(486), list->head);
+	cout << " Temp = " << *temp->data << endl;
+	delete temp;
+	temp = nullptr;
+	list->Display();
+	//temp2 = list->SeeNext(new int(504), list->head);
+	//cout << " Temp = " << *temp2->data << endl;
+	list->Display();
+	temp = list -> SeeAt(new int(504), list->head);
+	cout << " Temp = " << *temp->data << endl;
+	list->Display();
+	list->Display();
 
 	return 0;
 }

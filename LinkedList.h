@@ -20,10 +20,11 @@ public:
 	bool IsInList(T* item);
 	bool IsEmpty();
 	int Size();
-	T* SeeNext(T* item);
+	T* SeeNext(T* item, Node<T>* ptr);
 	T* SeePrev(T* item);
-	T* SeeAt(T*);
+	Node<T>* SeeAt(T*, Node<T>* ptr);
 	void Reset();
+	Node<T>* PointerSwap(Node<T>* ptr1, Node<T>* ptr2);
 	void Swap(Node<T>* ptr1, Node<T>* ptr2);
 	//add function printlist()
 	void NotYetMergeSort();
@@ -34,6 +35,7 @@ public:
 	Node<T>* tail;
 	Node<T>* head;// = null;
 	int length;// = 0;
+	Node<T>* iterator;
 
 	//***************************************************
 	//**********  MERGE SORT CAUSE ITS ORDEREd ***********

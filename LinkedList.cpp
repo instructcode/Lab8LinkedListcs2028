@@ -10,6 +10,7 @@ LinkedList<T>::LinkedList(){
 	head = nullptr;
 	tail = nullptr;
 	length = 0;
+	iterator = 0;
 }
 //destructor
 template <typename T>
@@ -28,10 +29,7 @@ NumberList.cpp
 */
 
 
-//***************************************************
-//All items passed to or from the class should be done so via a pointer rather than
-//by value.
-//****************************************************
+
 template <typename T>
 void LinkedList<T>::AddItem(T* inval){
 	//so far this is unordered
@@ -64,10 +62,6 @@ void LinkedList<T>::Display() {
 }
 
 
-//***************************************************
-//All items passed to or from the class should be done so via a pointer rather than
-//by value.
-//****************************************************
 template <typename T>
 Node<T>* LinkedList<T>::GetItem(T* item, Node<T>* ptr) {
 		//recursion
@@ -75,7 +69,7 @@ Node<T>* LinkedList<T>::GetItem(T* item, Node<T>* ptr) {
 	//GetItem – searches the list for the given item.If found, it removes it from
 	///	the listand returns it.If not found, it returns a null pointer.
 
-		if (ptr != nullptr && ptr->data < item) {
+		if (ptr != nullptr && *ptr->data < *item) {
 			if (ptr->next != nullptr) {
 				return GetItem(item, ptr->next);
 			}
@@ -83,17 +77,22 @@ Node<T>* LinkedList<T>::GetItem(T* item, Node<T>* ptr) {
 				return nullptr;
 			}
 		}
-		else if (ptr != nullptr && ptr->data == item) {
-			return ptr->data;
+		else if (ptr != nullptr && *ptr->data == *item) {
+			//****************************************
+			//RIGHT HERE ADD THE REMOVE FUNCTION
+			// It swaps pointers to cut out the item
+			//*****************************************
+			//PROBLEM
+			//WHAT IF ITEM THATS GOTTEN IS HEAD PTR OR TAIL and theres 1 or 2
+			//THIS NEXT FUNCTION ONLY WORKS ON SANDWICHED PTRS
+			Node<T>* temp = PointerSwap(ptr->prev,ptr->next);
+			return temp;
 		}
 		else {
 			return nullptr;
 		}}
 
-//***************************************************
-//All items passed to or from the class should be done so via a pointer rather than
-//by value.
-//****************************************************
+
 template <typename T>
 bool LinkedList<T>::IsInList(T* item){
 	//returns a bool indicating if the given item is in the list.
@@ -112,12 +111,9 @@ int LinkedList<T>::Size() {
 	return length;
 }
 
-//***************************************************
-//All items passed to or from the class should be done so via a pointer rather than
-//by value.
-//****************************************************
+
 template <typename T>
-T* LinkedList<T>::SeeNext(T* item) {
+T* LinkedList<T>::SeeNext(T* item, Node<T>* ptr) {
 /*
 SeeNext – returns the item without removing it from the list at a given
 location in the list. The class will maintain the next location and will start
@@ -127,24 +123,60 @@ will throw an error. 2 calls to SeeNext will return the 2 items next to each
 other in the list unless SeeAt or Reset is called in between the 2 calls (or
 the first call returns the last item in the list).
 */
+	if (ptr != nullptr && *ptr->data < *item) {
+		if (ptr->next != nullptr) {
+			return SeeAt(item, ptr->next);
+		}
+		else {
+			throw "ListNotFlow";
+			return nullptr;
+		}
+	}
+	else if (ptr != nullptr && *ptr->data == *item) {
+		return ptr;
+	}
+	else {
+		throw "ListNotFlow";
+		return nullptr;
+	}
+
 }
 
-//***************************************************
-//All items passed to or from the class should be done so via a pointer rather than
-//by value.
-//****************************************************
 template <typename T>
 T* LinkedList<T>::SeePrev(T* item){
 //SeePrev – Same as SeeNext except in the other direction.
 }
+
+
 template <typename T>
-T* LinkedList<T>::SeeAt(T* item){
+Node<T>* LinkedList<T>::SeeAt(T* item, Node<T>* ptr){
 /*
 SeeAt – Finds an item at a location in the list (int passed in from user), and
 returns the item without removing it. If the location passed by the user is
 past the end of the list, this will throw an error. This will set the location
 used by SeeNext to point at the item after the item returned.
 */
+	
+	//if(item>length) //what do they mean my location???
+		//throw "ListNotFlow"
+	
+		if (ptr != nullptr && *ptr->data < *item) {
+			if (ptr->next != nullptr) {
+				return SeeAt(item, ptr->next);
+			}
+			else {
+				throw "ListNotFlow";
+				return nullptr;
+			}
+		}
+		else if (ptr != nullptr && *ptr->data == *item) {
+			return ptr;
+		}
+		else {
+			throw "ListNotFlow";
+			return nullptr;
+		}
+	
 }
 template <typename T>
 void LinkedList<T>::Reset(){
@@ -182,6 +214,57 @@ void LinkedList<T>::Swap(Node<T>* ptr1, Node<T>* ptr2){
 
 }
 template <typename T>
+Node<T>* LinkedList<T>::PointerSwap(Node<T>* ptr1, Node<T>* ptr2) {
+	//sequential swap only
+	//does not swap for nonsequential nodes
+	//should put if statement to make sure this only happens with
+	//sequential nodes
+	//also doesnt work when prev pointer points to head pointer
+	//gotta fix all instances of that
+	// *************************************************
+	// //prev point that leads to head should never point to head. thats dumb
+	//********************************************************
+	//
+	if (ptr1 == head && length==0) {//or if 1st pointer or 2nd pointer null pointers
+		return nullptr;
+	}
+	else if (ptr1 == head && length==1) {
+		return nullptr;
+	}
+	else if (ptr1->next == tail && tail!=nullptr) {
+		//***************************************************
+	}
+	else
+	{
+		//cuts out the NODE in between ptr1 and ptr2
+		//should it delete hmmmmmmmmmmm??????
+		//Node<T>* Temp = ptr1;
+		//Node<T>* Temp4 = ptr2;
+
+		Node<T>* Temp2 = ptr1->next;
+		ptr1->next = ptr2;
+		ptr2->prev = ptr1;
+
+		Temp2->prev = nullptr;
+		Temp2->next = nullptr;
+
+		//Node<T>* Temp3 = ptr2->next;
+		//ptr2->next = ptr1;
+		//ptr1->next = Temp3;
+		//ptr1 = ptr2;
+		length--;
+		return Temp2;
+
+	}
+	//this should remove the pointers to a middle item between and from
+	//and the two sandwiching items should point to each other
+	//basically if the two sandwiching items don't exist
+	//there should be conditionals to handle these cases
+	//they would be end or start of list
+
+
+}
+template <typename T>
 void LinkedList<T>::NotYetMergeSort(){
 	//bubble for now
 
@@ -207,10 +290,7 @@ merge
 */
 
 
-//***************************************************
-//All items passed to or from the class should be done so via a pointer rather than
-//by value.
-//****************************************************
+
 template <typename T>
 bool LinkedList<T>::Transverse(T* item, Node<T>* ptr) {
 	//recursion
