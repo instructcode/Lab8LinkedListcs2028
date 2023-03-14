@@ -3,8 +3,8 @@
 #include "LinkedList.cpp"
 #include "Node.h"
 #include "Node.cpp"
-#include "Task2Class.h"
-#include "Task2Class.cpp"
+#include "InventoryItem.h"
+#include "InventoryItem.cpp"
 #include <string>
 
 using namespace std;
@@ -19,7 +19,9 @@ int main() {
 	/**/
 	//
 	//TODO:
-	//1. 
+	//1. Strign bug in Task2Class is causing weird issues
+	//		figure out how to stop strign bug, it throwing off the rest of the cost
+	// 1.5.   Finish Task3 at bottom, iron out the issues im uncertain about
 	//2. RESET   use it
 	//3.  MAKE SURE WHEN SEENEXT and functions thats can transverse past the end of the list
 	// behave properly when such things happen
@@ -127,11 +129,13 @@ int main() {
 	case 1:
 		cout<< "Creating empty list..." <<endl;
 		LinkedList<int>* list = new LinkedList<int>();
+		break;
 	case 2:
 		cout<< "Deleting list..." <<endl;
 		//Gotta delete all ints* in the list too
 		//nodes too???
 		delete list;
+		break;
 	case 3:
 		cout << "To add an item please enter the values of the inventory item:"  <<endl;
 		cout << "integer SKU: "<<endl;
@@ -155,42 +159,70 @@ int main() {
 		cout << "Description: "<<endl;
 		string desc;
 		getline(cin, desc);
-		Task2Class* item = new Task2Class(SKU, desc, price, uom, quantity, lead);
+		InventoryItem* item = new InventoryItem(SKU, desc, price, uom, lead, quantity);
 		cout << "Adding item to list..." << endl;
-		AddItem(item);
+		list->AddItem(item);
+		break;
 	case 4:
 		cout<<"Type in the SKU of the item you want to get: "<<endl;
-		//hmmmmmmmmmmm  T* item = Task2Class, but how to get the SKU?
+		//hmmmmmmmmmmm  T* item = InventoryItem, but how to get the SKU?
 		//   Insert for item ____->data->description??
 		//its going to have to rely on comparison operators too
 		// hmmmm this stumps me
-		Node<T>* GetItem(T * item, Node<T>*ptr);
+		 list->GetItem(T * item, Node<T>*ptr);
+		break;
 		//add additional code to display the item to the user indicating its in stock
 	case 5:
 		cout<< "Check to see if an item is in the list." <<endl;
 		cout<< "Type in the SKU of the item you want to check: "<<endl;
 		bool Isin;
-		Isin= IsInList(T * item); //replace T * item with proper coding
+		Isin= list->IsInList(T * item); //replace T * item with proper coding
 		if (Isin)
 			cout<< "Item is in the list." <<endl;
 		else
 			cout<< "Item is not in the list." <<endl;
+		break;
 	case 6:
-		bool IsEmpty();
+		cout << "Check to see if the list is empty." <<endl;
+
+		cout << "It is: " << list->IsEmpty() << " that the list is empty." <<endl;
+		break;
 	case 7:
-		int Size();
+		cout << "The size of the list is: " << Size() <<endl;
+		cout<<  list->Size()<<endl;
+		break;
 	case 8:
-		T* SeeNext();
+		cout << "See the next item in the list." <<endl;
+		cout << list->SeeNext()<<endl; //this sees a pointer, probably wanna see SKU or description
+		break;
 	case 9:
-		T* SeePrev();
+		cout << "See the previous item in the list." <<endl;
+		cout << list->SeePrev()<<endl; //this sees a pointers; probably wanna see SKU or description
+		break;
 	case 10:
-		Node<T>* SeeAt(T*, Node<T>*ptr);
+		cout << "See the item at a specific location in the list." <<endl;
+		cout << "Type in the SKU of the item you want to see: "<<endl;
+		cin >> SKU;
+		cout << list->SeeAt(T*, list->head)<<endl; //this sees a pointer, probably wanna see SKU or description
+		//also replace T* with some mangled mess of data->getSKU(SKU)
+		break;
 	case 11:
-		void Reset();
+		cout << "Reset the iterator view of the list to 0" <<endl;
+		list->Reset();
+		break;
 	case 12:
-		void NotYetMergeSort();
+		cout<< "Sort the list by SKU" <<endl;
+		cout<< "This should be done whenever u wanna access items after adding items."<<endl;
+		//***********************  
+		//  OR THIS FUNCTION SHOULD BE CALLED AUTOMATICALLY everytime additems is called
+		list->NotYetMergeSort();
+		break;
 	case 13:
-		void Display();
+		cout << "Display the list." <<endl;
+		list->Display();
+		break;
+	case 99:
+		cout << "Terminating program." <<endl;
 
 		}while (userresponse!=99);
 
