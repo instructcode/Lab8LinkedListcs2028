@@ -4,7 +4,7 @@
 #include "Node.h"
 #include "Node.cpp"
 #include "InventoryItem.h"
-#include "InventoryItem.cpp"
+//#include "InventoryItem.cpp"
 #include <string>
 
 using namespace std;
