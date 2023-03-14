@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctime>
 #include <chrono>
+#include <ostream>
 #ifndef INVENTORYITEM_H
 #define INVENTORYITEM_H
 
@@ -17,12 +18,12 @@ InventoryItem(int sku, string desc, double money, string uom, double lead, int q
 string GetPartInfo(); 
 double GetPrice();
 bool InStock();
-bool Available();
+bool Available(int dat);
 
 bool operator >(InventoryItem& const other);
 bool operator <(InventoryItem& const other);
 bool operator ==(InventoryItem& const other);
-
+friend ostream& operator<<(ostream& out, const InventoryItem& other);
 
 private:
 	int SKU;

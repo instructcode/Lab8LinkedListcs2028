@@ -33,6 +33,17 @@ int main() {
 	// behave properly when such things happen
 	//
 
+	//IT WORKS FINALLLLYYYY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	LinkedList<InventoryItem>* list = new LinkedList<InventoryItem>();
+	Node<InventoryItem>* temp = new Node<InventoryItem>(new InventoryItem(576879, "PS5 gaming console", 600, "UOM whatever that is", 5, 20), list->head);
+	
+	list->AddItem(new InventoryItem(5879, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
+	list->AddItem(new InventoryItem(589, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
+	list->AddItem(new InventoryItem(5687, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
+	list->AddItem(new InventoryItem(4579, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
+	list->NotYetMergeSort();
+	list->Display();
+	/*
 	LinkedList<int>* list = new LinkedList<int>();
 	Node<int>* temp;
 	bool BUGSFIXED = true;
@@ -103,12 +114,14 @@ int main() {
 	temp3 = list->SeePrev();
 	cout << " Temp = " << *temp3 << endl;
 	list->Display();
-
+	*/
 	//TASK 3 BELOW
 	/*
 	int userresponse;
 	char userresponse1;
-	node<InventoryItem>* temp;
+	Node<InventoryItem>* temp;
+	*/
+	/*
 	do{
 	do {
 
@@ -126,17 +139,17 @@ int main() {
 			cout << "Type 11 for: void Reset();" << endl;
 			cout << "Type 12 for: void NotYetMergeSort();" << endl;
 			cout << "Type 13 for: void Display();" << endl;
-			cout << "Type 99 to terminate program"; << endl;
-			getline(cin, userresponse);
-			//cin>>userresponse
-			//cin.ignore()
+			cout << "Type 99 to terminate program" << endl;
+			cin >> userresponse;
+			cin.ignore();
+			//getline(cin, userresponse);
 
 	} while (userresponse>13||userresponse <1);
 
-	switch (userresponse) {
+	switch(userresponse) {
 	case 1:
 		cout<< "Creating empty list..." <<endl;
-		LinkedList<int>* list = new LinkedList<int>();
+		LinkedList<InventoryItem>* list = new LinkedList<InventoryItem>();
 		break;
 		//****************************************
 		//use try catches in all of these to make sure list exists first and is not empty
@@ -151,7 +164,9 @@ int main() {
 		cout << "To add an item please enter the values of the inventory item:"  <<endl;
 		cout << "integer SKU: "<<endl;
 		int SKU;
-		getline(cin, SKU);
+		cin >> SKU;
+		cin.ignore();
+		//getline(cin, SKU);
 		cout << "Quantity: "<<endl;
 		int quantity;
 		cin >> quantity;
@@ -183,8 +198,8 @@ int main() {
 		//should check first to see if available
 		//if not available, message this to customer,
 		//or just use available() method
-		temp=list->GetItem(T * item, Node<T>*ptr); //(*SKU, list->head);
-		cout << temp->GetPartInfo() << " Is the item retrieved " <<endl;
+		temp = list->GetItem(&SKU, list->head); //(T * item, Node<T>*ptr);
+		cout << *temp->data->GetPartInfo() << " Is the item retrieved " <<endl;
 		temp->data delete;
 		temp->data = nullptr;
 		//probably should make destructor handle this stuff automatically
@@ -254,8 +269,8 @@ int main() {
 	system("clr");
 		}while (userresponse!=99);
 
-	}*/
-
+	}
+	*/
 
 	return 0;
 }
