@@ -7,9 +7,9 @@ class Task2Class
 {
 public:
 
-Task2Class();
+Task2Class(int sku, string desc, double money, string uom, int quant, double lead);
 ~Task2Class();
-char GetPartInfo(); //should be string but string isnt working
+string GetPartInfo(); //should be string but string isnt working
 double GetPrice();
 bool InStock();
 bool Available();
@@ -21,9 +21,9 @@ bool operator ==(Task2Class& const other);
 
 private:
 	int SKU;
-	char* Description; //change back to string
+	string Description; //change back to string
 	double Price;
-	char* UOM; //unit of measure
+	string UOM; //unit of measure
 	int QuantityOnHand;
 	double LeadTime;
 
