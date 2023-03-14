@@ -14,8 +14,9 @@
 
 
 using namespace std;
-InventoryItem* searchsku(int SKU, InventoryItem* arr[]);
-
+InventoryItem* searchsku(int SKU, InventoryItem* arr[], int numItems);
+int indexsku(int SKU, InventoryItem* arr[], int numitems);
+void arraysquish(InventoryItem* arr[], int index, int numitems);
 
 int main() {
 	//commented code tests parts of the code as I go
@@ -34,30 +35,7 @@ int main() {
 	//4.Ok all the prework is done.  remainder issues is doing the time for available(), try catches, make sure everything works when stuff goes past the lsit end, it access a nullptr
 
 	//IT WORKS FINALLLLYYYY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	LinkedList<InventoryItem>* list = new LinkedList<InventoryItem>();
-	Node<InventoryItem>* temp = new Node<InventoryItem>(new InventoryItem(576879, "PS5 gaming console", 600, "UOM whatever that is", 5, 20), list->head);
-	//^^^^ Don't do node<inventoryItem
-
-	InventoryItem* arrg[4] = {new InventoryItem(5879, "PS5 gaming console", 600, "UOM whatever that is", 5, 20)
-	,new InventoryItem(589, "PS5 gaming console", 600, "UOM whatever that is", 5, 20)
-	,new InventoryItem(5687, "PS5 gaming console", 600, "UOM whatever that is", 5, 20)
-	,new InventoryItem(4579, "PS5 gaming console", 600, "UOM whatever that is", 5, 20) };
-
-
-	for (int i = 0; i < 4; i++) {
-
-		list->AddItem(arrg[i]);
-	}
 	
-	list->NotYetMergeSort();
-	list->Display();
-
-	Node<InventoryItem>* temp3;
-	temp3 = list->GetItem(searchsku(5879, arrg), list->head); //uh oh u see the problem gEttIng an inventory item is only done by pointer
-		// but unless u create a inventory pointer to descriptoin table
-		//you wont be able to search it
-		// sollution is make something that can search by sku or description
-		cout << temp3->data->GetPartInfo() << endl;
 
 	/*
 	LinkedList<int>* list = new LinkedList<int>();
@@ -132,12 +110,53 @@ int main() {
 	list->Display();
 	*/
 	//TASK 3 BELOW
-	/*
+	
 	int userresponse;
 	char userresponse1;
-	Node<InventoryItem>* temp;
-	*/
-	/*
+	int numberitems = 4;
+	//*****************************************************
+	// // number items only works if stuff gets taken out in order
+	//Node<InventoryItem>* temp;
+	
+	InventoryItem* temp2;
+	LinkedList<InventoryItem>* list = new LinkedList<InventoryItem>();
+	Node<InventoryItem>* temp = new Node<InventoryItem>(new InventoryItem(576879, "PS5 gaming console", 600, "UOM whatever that is", 5, 20), list->head);
+	//^^^^ Don't do node<inventoryItem
+
+	InventoryItem* arrg[30] = { new InventoryItem(5879, "PS5 gaming console", 600, "UOM whatever that is", 5, 20)
+	,new InventoryItem(589, "PS5 gaming console", 600, "UOM whatever that is", 5, 20)
+	,new InventoryItem(5687, "PS5 gaming console", 600, "UOM whatever that is", 5, 20)
+	,new InventoryItem(4579, "PS5 gaming console", 600, "UOM whatever that is", 5, 20) };
+
+	for (int i = 0; i < 4; i++) {
+
+		list->AddItem(arrg[i]);
+	}
+
+	list->NotYetMergeSort();
+	list->Display();
+
+	Node<InventoryItem>* temp3;
+	temp3 = list->GetItem(searchsku(5879, arrg, numberitems), list->head); //uh oh u see the problem gEttIng an inventory item is only done by pointer
+	// but unless u create a inventory pointer to descriptoin table
+	//you wont be able to search it
+	// sollution is make something that can search by sku or description
+	cout << temp3->data->GetPartInfo() << endl;
+
+
+
+
+	int SKU;
+	int arrgindex;
+	int quantity;
+	double price;
+	string uom;
+	double lead;
+	string desc;
+
+
+	bool Isin;
+	
 	do{
 	do {
 
@@ -162,103 +181,111 @@ int main() {
 
 	} while (userresponse>13||userresponse <1);
 
-	switch(userresponse) {
+	switch (userresponse) {
 	case 1:
-		cout<< "Creating empty list..." <<endl;
-		LinkedList<InventoryItem>* list = new LinkedList<InventoryItem>();
+		//cout << "Creating empty list..." << endl;
+		//LinkedList<InventoryItem>* list = new LinkedList<InventoryItem>();
 		break;
 		//****************************************
 		//use try catches in all of these to make sure list exists first and is not empty
 		//so that the program doesnt crash when it tries to access a nullptr by user being dumbdumb
 	case 2:
-		cout<< "Deleting list..." <<endl;
+		cout << "Deleting list..." << endl;
 		//Gotta delete all ints* in the list too
 		//nodes too???
 		delete list;
 		break;
 	case 3:
-		cout << "To add an item please enter the values of the inventory item:"  <<endl;
-		cout << "integer SKU: "<<endl;
-		int SKU;
+		cout << "To add an item please enter the values of the inventory item:" << endl;
+		cout << "integer SKU: " << endl;
+
 		cin >> SKU;
 		cin.ignore();
 		//getline(cin, SKU);
-		cout << "Quantity: "<<endl;
-		int quantity;
+		cout << "Quantity: " << endl;
 		cin >> quantity;
 		cin.ignore();
-		cout << "Price: "<<endl;
-		double price;
+		cout << "Price: " << endl;
 		cin >> price;
 		cin.ignore();
-		cout << "Unit of Measure: "<<endl;
-		string uom;
+		cout << "Unit of Measure: " << endl;
 		getline(cin, uom);
-		cout << "Lead Time: "<<endl;
-		double lead;
+		cout << "Lead Time: " << endl;
 		cin >> lead;
 		cin.ignore();
-		cout << "Description: "<<endl;
-		string desc;
+		cout << "Description: " << endl;
 		getline(cin, desc);
-		InventoryItem* item = new InventoryItem(SKU, desc, price, uom, lead, quantity);
+		arrg[numberitems] = new InventoryItem(SKU, desc, price, uom, lead, quantity);
 		cout << "Adding item to list..." << endl;
-		list->AddItem(item);
+		list->AddItem(arrg[numberitems]);
+		numberitems++;
 		break;
 	case 4:
-		cout<<"Type in the SKU of the item you want to get: "<<endl;
+		cout << "Type in the SKU of the item you want to get: " << endl;
 		//hmmmmmmmmmmm  T* item = InventoryItem, but how to get the SKU?
 		//   Insert for item ____->data->description??
 		//its going to have to rely on comparison operators too
 		// hmmmm this stumps me
 		//should check first to see if available
+		cin >> SKU;
+		cin.ignore();
 		//if not available, message this to customer,
 		//or just use available() method
-		temp = list->GetItem(&SKU, list->head); //(T * item, Node<T>*ptr);
-		cout << *temp->data->GetPartInfo() << " Is the item retrieved " <<endl;
-		temp->data delete;
+		arrgindex = indexsku(SKU, arrg, numberitems);
+		temp3 = list->GetItem(searchsku(SKU, arrg, numberitems), list->head);
+		cout << temp3->data->GetPartInfo() << " Is the item retrieved " << endl;
+		delete temp3->data;
 		temp->data = nullptr;
 		//probably should make destructor handle this stuff automatically
-		temp delete;
-		temp = nullptr;
+		delete temp3;
+		temp3 = nullptr;
+		delete arrg[arrgindex];
+		arrg[arrgindex]=nullptr;
+		arraysquish(arrg, arrgindex, numberitems);
+		numberitems--;
 		break;
 		//add additional code to display the item to the user indicating its in stock
 	case 5:
-		cout<< "Check to see if an item is in the list." <<endl;
-		cout<< "Type in the SKU of the item you want to check: "<<endl;
-		bool Isin;
-		Isin= list->IsInList(T * item); //replace T * item with proper coding
-		if (Isin)
-			cout<< "Item is in the list." <<endl;
-		else
-			cout<< "Item is not in the list." <<endl;
+		cout << "Check to see if an item is in the list." << endl;
+		cout << "Type in the SKU of the item you want to check: " << endl;
+		cin >> SKU;
+		cin.ignore();
+		Isin = list->IsInList(searchsku(SKU, arrg, numberitems)); //replace T * item with proper coding
+		if (Isin) {
+			cout << "Item is in the list." << endl;
+		}
+		else {
+		cout << "Item is not in the list." << endl;
+	}
 		break;
 	case 6:
 		cout << "Check to see if the list is empty." <<endl;
-
 		cout << "It is: " << list->IsEmpty() << " that the list is empty." <<endl;
 		break;
 	case 7:
-		cout << "The size of the list is: " << Size() <<endl;
+		cout << "The size of the list is: " <<endl;
 		cout<<  list->Size()<<endl;
 		break;
 	case 8:
 		cout << "See the next item in the list." <<endl;
-		temp = list->SeeNext();
-		cout << temp->GetPartInfo() <<endl; //this sees a pointer, probably wanna see SKU or description
+		temp2 = list->SeeNext();
+		cout << temp2->GetPartInfo() <<endl; //this sees a pointer, probably wanna see SKU or description
 		break;
 	case 9:
 		cout << "See the previous item in the list." <<endl;
-		temp = list->SeePrev();
-		cout << temp->GetPartInfo() <<endl; //this sees a pointers; probably wanna see SKU or description
+		temp2 = list->SeePrev();
+		cout << temp2->GetPartInfo() <<endl; //this sees a pointers; probably wanna see SKU or description
 		break;
 	case 10:
 		cout << "See the item at a specific location in the list." <<endl;
 		cout << "Type in the SKU of the item you want to see: "<<endl;
 		cin >> SKU;
 		//might have to change function to pay attention to SKU, not pointer
-		cout << list->SeeAt(T*, list->head)<<endl; //this sees a pointer, probably wanna see SKU or description
+		temp = list->SeeAt(searchsku(SKU, arrg, numberitems), list->head);
+		cout << temp->data <<endl; //this sees a pointer, probably wanna see SKU or description
 		//also replace T* with some mangled mess of data->getSKU(SKU)
+		//*************************************************************
+		//DUNNO WHAT YAH WANT TO SEE , the DATA, pointer, SKU?
 		break;
 	case 11:
 		cout << "Reset the iterator view of the list to 0" <<endl;
@@ -278,24 +305,51 @@ int main() {
 		break;
 	case 99:
 		cout << "Terminating program." <<endl;
-	}<------------ for switch
+	}
 	cout<< "Clear text? (y/n)" <<endl;
 	cin>>userresponse1;
 	if(userresponse1=='y')
 	system("clr");
 		}while (userresponse!=99);
 
-	}
-	*/
+	
+	
 
 	return 0;
 }
 
 
 
-InventoryItem* searchsku(int SKU, InventoryItem* arr[]) {
-	for (int i = 0; i < sizeof(arr); i++) {
-		if (arr[i]->GetSKU() == SKU)
-			return arr[i];
+
+
+
+
+
+InventoryItem* searchsku(int SKU, InventoryItem* arr[], int numitems) {
+	for (int i = 0; i < numitems; i++) {
+		if (arr[i] != nullptr) {
+			if (arr[i]->GetSKU() == SKU)
+				return arr[i];
+		}
+	}
+	throw "Item not found";
+	
+}
+int indexsku(int SKU, InventoryItem* arr[], int numitems) {
+	for (int i = 0; i < numitems; i++) {
+		if (arr[i] != nullptr) {
+			if (arr[i]->GetSKU() == SKU) {
+				return i;
+			}
+		}
+	}
+	throw "Item not found";
+}
+void arraysquish(InventoryItem* arr[], int index, int numitems) {
+
+	for (int k = 0; k < numitems; k++) {
+		if (k >= index) {
+			arr[k] = arr[k + 1];
+		}
 	}
 }

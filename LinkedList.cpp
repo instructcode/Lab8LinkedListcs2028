@@ -123,7 +123,7 @@ Node<T>* LinkedList<T>::GetItem(T* item, Node<T>* ptr) {
 template <typename T>
 bool LinkedList<T>::IsInList(T* item){
 	//returns a bool indicating if the given item is in the list.
-	return Transverse(T, head);
+	return Transverse(item, head);
 }
 template <typename T>
 bool LinkedList<T>::IsEmpty(){
@@ -429,109 +429,3 @@ bool LinkedList<T>::Transverse(T* item, Node<T>* ptr) {
 }
 
 
-/*
-***********************************************************
-************   model code			***********************
-***********************************************************
-
-
-Before you use the head pointer in any linked list operations, you must be sure it is initialized to nullptr because that marks the end of the list. Once you have declared a node data
-structure and have created a null head pointer, you have an empty linked list. The next step
-is to implement operations with the list.
-
-
-void insert_head(T inval){
-
-Node* temp = new Node(inval);
-	temp->next = head;
-	head = temp;
-	length++;
-}
-
-
-
-void insert_tail(T inval){
-Node* temp = new Node(inval);
-	Node* curr = head;
-	while (curr->next != nullptr){
-		curr = curr->next;
-	}
-	curr->next = temp;
-	length++;
-}
-
-void insert_at(T inval, int pos){
-	}
-
-
-void delete_head(){
-Node* temp = head;
-	head = head->next;
-	delete temp;
-	length--;
-}
-
-void delete_tail(){
-Node* curr = head;
-	while (curr->next->next != nullptr){
-		curr = curr->next;
-	}
-	delete curr->next;
-	curr->next = nullptr;
-	length--;
-}
-
-void delete_at(int pos){
-	}
-
-	void InsertOrdered(T inval){
-		Node* temp = new Node(inval);
-		Node* curr = head;
-		while (curr->next != nullptr && curr->next->data < inval){
-			curr = curr->next;
-		}
-		temp->next = curr->next;
-		curr->next = temp;
-		length++;
-	}
-
-	T RemoveFront(){
-	if(head == nullptr)
-	{
-	throw Emptylist Exception;
-	}
-		Node *temp = head;
-		head = head->next;
-		T retval=temp->data;
-		delete temp;
-		length--;
-		return retval;
-
-		}
-
-		T RemoveEnd(){
-		if(length==1){
-		length--;
-		int retval = head->data;
-		delete head;
-		head=nullptr;
-		return retval;
-		}
-		if(isEmpty()) throw exception;
-		Node *temp= head;
-		while(temp->next->next!=nullptr){
-		temp=temp->next;
-			}
-			int retval = temp->next->data;
-			delete temp->next;
-			temp->next=nullptr;
-			length--;
-			return retval;
-			}
-
-
-
-
-
-
-*/
