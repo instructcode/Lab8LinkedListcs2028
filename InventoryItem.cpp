@@ -23,6 +23,7 @@ string InventoryItem::GetPartInfo() {
 	return returnstring;
 }
 double InventoryItem::GetPrice() { return Price; }
+int	InventoryItem::GetSKU() { return SKU; }
 bool InventoryItem::InStock() { return (QuantityOnHand>0); }
 bool InventoryItem::Available(int dat) { 
 	// Get the current time point

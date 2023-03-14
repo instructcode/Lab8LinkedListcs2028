@@ -14,7 +14,7 @@
 
 
 using namespace std;
-
+InventoryItem* searchsku(int SKU, InventoryItem* arr[]);
 
 
 int main() {
@@ -31,22 +31,34 @@ int main() {
 	//2. RESET   use it
 	//3.  MAKE SURE WHEN SEENEXT and functions thats can transverse past the end of the list
 	// behave properly when such things happen
-	//
+	//4.Ok all the prework is done.  remainder issues is doing the time for available(), try catches, make sure everything works when stuff goes past the lsit end, it access a nullptr
 
 	//IT WORKS FINALLLLYYYY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	LinkedList<InventoryItem>* list = new LinkedList<InventoryItem>();
 	Node<InventoryItem>* temp = new Node<InventoryItem>(new InventoryItem(576879, "PS5 gaming console", 600, "UOM whatever that is", 5, 20), list->head);
 	//^^^^ Don't do node<inventoryItem
-	list->AddItem(new InventoryItem(5879, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
-	list->AddItem(new InventoryItem(589, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
-	list->AddItem(new InventoryItem(5687, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
-	list->AddItem(new InventoryItem(4579, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
+
+	InventoryItem* arrg[4] = {new InventoryItem(5879, "PS5 gaming console", 600, "UOM whatever that is", 5, 20)
+	,new InventoryItem(589, "PS5 gaming console", 600, "UOM whatever that is", 5, 20)
+	,new InventoryItem(5687, "PS5 gaming console", 600, "UOM whatever that is", 5, 20)
+	,new InventoryItem(4579, "PS5 gaming console", 600, "UOM whatever that is", 5, 20) };
+
+
+	for (int i = 0; i < 4; i++) {
+
+		list->AddItem(arrg[i]);
+	}
+	
 	list->NotYetMergeSort();
 	list->Display();
-	list->GetItem(,list->head) //uh oh u see the problem gEttIng an inventory item is only done by pointer
+
+	Node<InventoryItem>* temp3;
+	temp3 = list->GetItem(searchsku(5879, arrg), list->head); //uh oh u see the problem gEttIng an inventory item is only done by pointer
 		// but unless u create a inventory pointer to descriptoin table
 		//you wont be able to search it
 		// sollution is make something that can search by sku or description
+		cout << temp3->data->GetPartInfo() << endl;
+
 	/*
 	LinkedList<int>* list = new LinkedList<int>();
 	Node<int>* temp;
@@ -277,4 +289,13 @@ int main() {
 	*/
 
 	return 0;
+}
+
+
+
+InventoryItem* searchsku(int SKU, InventoryItem* arr[]) {
+	for (int i = 0; i < sizeof(arr); i++) {
+		if (arr[i]->GetSKU() == SKU)
+			return arr[i];
+	}
 }

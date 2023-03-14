@@ -17,6 +17,7 @@ InventoryItem(int sku, string desc, double money, string uom, double lead, int q
 ~InventoryItem();
 string GetPartInfo(); 
 double GetPrice();
+int GetSKU();
 bool InStock();
 bool Available(int dat);
 
