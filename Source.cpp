@@ -96,6 +96,7 @@ int main() {
 	cout << " Temp = " << *temp3 << endl;
 	list->Display();
 
+	//TASK 3 BELOW
 	/*
 	int userresponse;
 	do{
@@ -117,7 +118,7 @@ int main() {
 			cout << "Type 13 for: void Display();" << endl;
 			cout << "Type 99 to terminate program"; << endl;
 			getline(cin, userresponse);
-			//cin>>userresponsel
+			//cin>>userresponse
 			//cin.ignore()
 
 	} while (userresponse>13||userresponse <1);
@@ -133,34 +134,47 @@ int main() {
 		delete list;
 	case 3:
 		cout << "To add an item please enter the values of the inventory item:"  <<endl;
-		cout << "integer SKU: ";
+		cout << "integer SKU: "<<endl;
 		int SKU;
 		getline(cin, SKU);
-		cout << "Quantity: ";
+		cout << "Quantity: "<<endl;
 		int quantity;
 		cin >> quantity;
 		cin.ignore();
-		cout << "Price: ";
+		cout << "Price: "<<endl;
 		double price;
 		cin >> price;
 		cin.ignore();
-		cout << "Unit of Measure: ";
+		cout << "Unit of Measure: "<<endl;
 		string uom;
 		getline(cin, uom);
-		cout << "Lead Time: ";
+		cout << "Lead Time: "<<endl;
 		double lead;
 		cin >> lead;
 		cin.ignore();
-		cout << "Description: ";
+		cout << "Description: "<<endl;
 		string desc;
 		getline(cin, desc);
 		Task2Class* item = new Task2Class(SKU, desc, price, uom, quantity, lead);
 		cout << "Adding item to list..." << endl;
 		AddItem(item);
 	case 4:
+		cout<<"Type in the SKU of the item you want to get: "<<endl;
+		//hmmmmmmmmmmm  T* item = Task2Class, but how to get the SKU?
+		//   Insert for item ____->data->description??
+		//its going to have to rely on comparison operators too
+		// hmmmm this stumps me
 		Node<T>* GetItem(T * item, Node<T>*ptr);
+		//add additional code to display the item to the user indicating its in stock
 	case 5:
-		bool IsInList(T * item);
+		cout<< "Check to see if an item is in the list." <<endl;
+		cout<< "Type in the SKU of the item you want to check: "<<endl;
+		bool Isin;
+		Isin= IsInList(T * item); //replace T * item with proper coding
+		if (Isin)
+			cout<< "Item is in the list." <<endl;
+		else
+			cout<< "Item is not in the list." <<endl;
 	case 6:
 		bool IsEmpty();
 	case 7:
