@@ -1,7 +1,9 @@
 #pragma once
+#include <string>
+#include <string.h>
 #ifndef TASK2CLASS_H
 #define TASK2CLASS_H
-#include <string.h>
+
 
 class Task2Class
 {

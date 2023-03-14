@@ -1,7 +1,7 @@
 #include "Task2Class.h"
 
 #include <iostream>
-#include <string.h>
+#include <string>
 
 using namespace std;
 
@@ -22,7 +22,7 @@ string Task2Class::GetPartInfo() {
 }
 double Task2Class::GetPrice() { return Price; }
 bool Task2Class::InStock() { return (QuantityOnHand>0); }
-bool Task2Class::Available() { return (QuantityOnHand > 0)||(currentdate>Leadtime); }
+bool Task2Class::Available() { return (QuantityOnHand > 0)/* || (currentdate>Leadtime)*/; }
 
 bool Task2Class::operator >(Task2Class& const other) { 
 	if (SKU > other.SKU)
