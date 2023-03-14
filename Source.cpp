@@ -4,8 +4,14 @@
 #include "Node.h"
 #include "Node.cpp"
 #include "InventoryItem.h"
+#include <ctime>
+#include <chrono>
 //#include "InventoryItem.cpp"
 #include <string>
+
+
+//ohhhhhh only include the .cpp when its a templated class
+
 
 using namespace std;
 
@@ -19,8 +25,8 @@ int main() {
 	/**/
 	//
 	//TODO:
-	//1. Strign bug in Task2Class is causing weird issues
-	//		figure out how to stop strign bug, it throwing off the rest of the cost
+	//
+	//	1.  To DO: make datetime stuff work in available function, finish task 3 stuff (its commented out at end), make sure everything is compatible, add try and catches, fix issues where linked list is requested in a stackoverflow or underflow circumstances
 	// 1.5.   Finish Task3 at bottom, iron out the issues im uncertain about
 	//2. RESET   use it
 	//3.  MAKE SURE WHEN SEENEXT and functions thats can transverse past the end of the list
@@ -101,6 +107,8 @@ int main() {
 	//TASK 3 BELOW
 	/*
 	int userresponse;
+	char userresponse1;
+	node<InventoryItem>* temp;
 	do{
 	do {
 
@@ -130,6 +138,9 @@ int main() {
 		cout<< "Creating empty list..." <<endl;
 		LinkedList<int>* list = new LinkedList<int>();
 		break;
+		//****************************************
+		//use try catches in all of these to make sure list exists first and is not empty
+		//so that the program doesnt crash when it tries to access a nullptr by user being dumbdumb
 	case 2:
 		cout<< "Deleting list..." <<endl;
 		//Gotta delete all ints* in the list too
@@ -169,7 +180,16 @@ int main() {
 		//   Insert for item ____->data->description??
 		//its going to have to rely on comparison operators too
 		// hmmmm this stumps me
-		 list->GetItem(T * item, Node<T>*ptr);
+		//should check first to see if available
+		//if not available, message this to customer,
+		//or just use available() method
+		temp=list->GetItem(T * item, Node<T>*ptr); //(*SKU, list->head);
+		cout << temp->GetPartInfo() << " Is the item retrieved " <<endl;
+		temp->data delete;
+		temp->data = nullptr;
+		//probably should make destructor handle this stuff automatically
+		temp delete;
+		temp = nullptr;
 		break;
 		//add additional code to display the item to the user indicating its in stock
 	case 5:
@@ -193,16 +213,19 @@ int main() {
 		break;
 	case 8:
 		cout << "See the next item in the list." <<endl;
-		cout << list->SeeNext()<<endl; //this sees a pointer, probably wanna see SKU or description
+		temp = list->SeeNext();
+		cout << temp->GetPartInfo() <<endl; //this sees a pointer, probably wanna see SKU or description
 		break;
 	case 9:
 		cout << "See the previous item in the list." <<endl;
-		cout << list->SeePrev()<<endl; //this sees a pointers; probably wanna see SKU or description
+		temp = list->SeePrev();
+		cout << temp->GetPartInfo() <<endl; //this sees a pointers; probably wanna see SKU or description
 		break;
 	case 10:
 		cout << "See the item at a specific location in the list." <<endl;
 		cout << "Type in the SKU of the item you want to see: "<<endl;
 		cin >> SKU;
+		//might have to change function to pay attention to SKU, not pointer
 		cout << list->SeeAt(T*, list->head)<<endl; //this sees a pointer, probably wanna see SKU or description
 		//also replace T* with some mangled mess of data->getSKU(SKU)
 		break;
@@ -216,6 +239,7 @@ int main() {
 		//***********************  
 		//  OR THIS FUNCTION SHOULD BE CALLED AUTOMATICALLY everytime additems is called
 		list->NotYetMergeSort();
+		list->Display();
 		break;
 	case 13:
 		cout << "Display the list." <<endl;
@@ -223,7 +247,11 @@ int main() {
 		break;
 	case 99:
 		cout << "Terminating program." <<endl;
-
+	}<------------ for switch
+	cout<< "Clear text? (y/n)" <<endl;
+	cin>>userresponse1;
+	if(userresponse1=='y')
+	system("clr");
 		}while (userresponse!=99);
 
 	}*/

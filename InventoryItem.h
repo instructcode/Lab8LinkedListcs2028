@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <string.h>
+#include <ctime>
+#include <chrono>
 #ifndef INVENTORYITEM_H
 #define INVENTORYITEM_H
 

@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <string>
+#include <ctime>
+#include <chrono>
 
 using namespace std;
 
@@ -22,7 +24,18 @@ string InventoryItem::GetPartInfo() {
 }
 double InventoryItem::GetPrice() { return Price; }
 bool InventoryItem::InStock() { return (QuantityOnHand>0); }
-bool InventoryItem::Available() { return (QuantityOnHand > 0)/* || (currentdate>Leadtime)*/; }
+bool InventoryItem::Available(int date) { 
+	// Get the current time point
+	auto now = std::chrono::system_clock::now();
+
+	// Convert the time point to a time_t object
+	std::time_t time = std::chrono::system_clock::to_time_t(now);
+
+	// Convert the time_t object to a string in the format "YYYY-MM-DD"
+	char date[11];
+	//std::strftime(date, sizeof(date), "%Y-%m-%d", std::localtime(&time));
+
+	return (QuantityOnHand > 0)/* || (currentdate>Leadtime)*/; }
 //*********************************************************** this needs fixed above
 bool InventoryItem::operator >(InventoryItem& const other) {
 	if (SKU > other.SKU)
