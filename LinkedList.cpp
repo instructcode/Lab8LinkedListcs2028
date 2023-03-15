@@ -16,6 +16,17 @@ LinkedList<T>::LinkedList(){
 template <typename T>
 LinkedList<T>::~LinkedList(){
 
+	Node<T>* temp = head;
+	Node<T>* temp2 = head;
+	for (int l = 0; l < length; l++) {
+		if (temp != nullptr) {
+			delete temp->data;
+			temp->data = nullptr;
+			temp = temp->next;
+			delete temp2;
+			temp2 = temp;
+		}
+	}
 //Destructor – make sure you remove all items to avoid memory leaks
 }
 /*
