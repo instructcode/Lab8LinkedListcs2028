@@ -32,8 +32,8 @@ int main() {
 	//
 	//TODO:
 	//
-	//	1.  To DO: make datetime stuff work in available function, finish task 3 stuff (its commented out at end), make sure everything is compatible, add try and catches, fix issues where linked list is requested in a stackoverflow or underflow circumstances
-	// 1.5.   Finish Task3 at bottom, iron out the issues im uncertain about
+	//	1.  To DO: make datetime stuff work in available function,  
+	// 
 	//2. Make SEENEXt, SEEAT,SEEPREV work even when nullptrs happen
 	// 2.5 add more tries and catches
 	//3.  MAKE SURE WHEN SEENEXT and functions thats can transverse past the end of the list
@@ -90,19 +90,19 @@ int main() {
 	do {
 
 		cout << "This is a test of the LinkedList class." << endl;
-		cout << "Type 1 for: LinkedList();" << endl;
-			cout << "Type 2 for: ~LinkedList();" << endl;
-			cout << "Type 3 for: void AddItem(T * item);" << endl;
-			cout << "Type 4 for: Node<T>* GetItem(T * item, Node<T>*ptr);" << endl;
-			cout << "Type 5 for: bool IsInList(T * item);" << endl;
-			cout << "Type 6 for: bool IsEmpty();" << endl;
-			cout << "Type 7 for: int Size();" << endl;
-			cout << "Type 8 for: T* SeeNext();" << endl;
-			cout << "Type 9 for: T* SeePrev();" << endl;
-			cout << "Type 10 for: Node<T>* SeeAt(T*, Node<T>*ptr);" << endl;
-			cout << "Type 11 for: void Reset();" << endl;
-			cout << "Type 12 for: void NotYetMergeSort();" << endl;
-			cout << "Type 13 for: void Display();" << endl;
+		//cout << "Type 1 for: LinkedList();" << endl;
+			cout << "Type 2 activate destructor for the list" << endl;
+			cout << "Type 3 to use AddItem(T * item) method to add an item into the list" << endl;
+			cout << "Type 4 to use GetItem(T * item, Node<T>*ptr) method to retrieve and remove and item from the list" << endl;
+			cout << "Type 5 to see if item is in the list using the method: IsInList(T * item)" << endl;
+			cout << "Type 6 to see if the list is empty using the method: IsEmpty()" << endl;
+			cout << "Type 7 to see how many nodes are in the list using the method: Size()" << endl;
+			cout << "Type 8 to iterate forwards through the list using T* SeeNext() method" << endl;
+			cout << "Type 9 to iterate backwards through the list using  T* SeePrev() method" << endl;
+			cout << "Type 10 to use SeeAt(T*, Node<T>*ptr) method" << endl;
+			cout << "Type 11 to Reset iterator back to head pointer used for SEENEXT, SEEPREV methods" << endl;
+			cout << "Type 12 to manually sort inventory by SKU number" << endl;
+			cout << "Type 13 to Display all inventory" << endl;
 			//cout << "Type 14 for: void displayskus(LinkedList<InventoryItem>* lis)" << endl;
 			cout << "Type 99 to terminate program" << endl;
 			cin >> userresponse;
@@ -148,42 +148,14 @@ int main() {
 		cout << "Adding item to list..." << endl;
 		list->AddItem(new InventoryItem(SKU, desc, price, uom, lead, quantity));
 		list->NotYetMergeSort();
-		//numberitems++;
 		break;
-		/*
-	case 4:
-		cout << "Type in the SKU of the item you want to get: " << endl;
-		//hmmmmmmmmmmm  T* item = InventoryItem, but how to get the SKU?
-		//   Insert for item ____->data->description??
-		//its going to have to rely on comparison operators too
-		// hmmmm this stumps me
-		//should check first to see if available
-		cin >> SKU;
-		cin.ignore();
-		//if not available, message this to customer,
-		//or just use available() method
-		arrgindex = indexsku(SKU, arrg, numberitems);
-		temp3 = list->GetItem(searchsku(SKU, arrg, numberitems), list->head);
-		cout << temp3->data->GetPartInfo() << " Is the item retrieved " << endl;
-		delete temp3->data;
-		temp->data = nullptr;
-		//probably should make destructor handle this stuff automatically
-		delete temp3;
-		temp3 = nullptr;
-		delete arrg[arrgindex];
-		arrg[arrgindex]=nullptr;
-		arraysquish(arrg, arrgindex, numberitems);
-		numberitems--;
-		break;
-		//add additional code to display the item to the user indicating its in stock
-		*/
+		
 	case 4:
 		cout << "Type in the SKU of the item you want to get: " << endl;
 		cin >> SKU;
 		cin.ignore();
 		//if not available, message this to customer,
 		//or just use available() method
-		//arrgindex = indexsku(SKU, arrg, numberitems);
 		//Node<InventoryItem>* searchsku(int SKU, LinkedList<InventoryItem>*lis)
 
 		try {
