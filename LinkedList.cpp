@@ -51,6 +51,7 @@ void LinkedList<T>::AddItem(T* inval){
 		temp->next = tail;
 		//okay this works so long as stuff is always added to tail
 		length++;
+		BubbleSort();
 	}
 	//then do some ordering operation like merge sort
 }
@@ -79,6 +80,7 @@ Node<T>* LinkedList<T>::GetItem(T* item, Node<T>* ptr) {
 				return GetItem(item, ptr->next);
 			}
 			else {
+				
 				return nullptr;
 			}
 		}
@@ -115,6 +117,7 @@ Node<T>* LinkedList<T>::GetItem(T* item, Node<T>* ptr) {
 			return temp;
 		}
 		else {
+			
 			return nullptr;
 		}
 }
@@ -210,7 +213,7 @@ used by SeeNext to point at the item after the item returned.
 				return SeeAt(item, ptr->next);
 			}
 			else {
-				throw "ListNotFlow";
+				
 				return nullptr;
 			}
 		}
@@ -218,7 +221,7 @@ used by SeeNext to point at the item after the item returned.
 			return ptr;
 		}
 		else {
-			throw "ListNotFlow";
+			
 			return nullptr;
 		}
 	
@@ -395,6 +398,46 @@ void LinkedList<T>::NotYetMergeSort(){
 		}
 	}
 }
+
+template <typename T>
+void LinkedList<T>::BubbleSort() {
+	//bubble for now
+	//if this worked from tail u'd only need to do this once and do it efficiently
+	//there are issues with the swap function with the tail
+	//maybe->prev isnt implemented how it should be
+	//doesn't matter now it automatically sorts but at an expensive cost
+	// OHHHHHHH THE ISSUE IS THAT IT ASSUMES WHEN IT GETS TO THE END OF THE LIST ITS DEALING WITH THE TAIL
+	// //but since its working backwards forwards
+	//WHEN IN ACTUALITY ITS DEALING WITH HEAD POINTERS
+	//THATS THE PROBLEM
+	/*
+	for (int k = 0; k < length - 1; k++) {
+		Node<T>* temp = head;
+		for (int j = 0; j < length - 1; j++) {
+			if (*temp->data > *temp->next->data) {
+				Swap(temp, temp->next);
+			}
+			temp = temp->next;
+		}
+	}
+	*/
+	//for (int k = 0; k < length - 1; k++) {
+		Node<T>* temp = tail;
+		for (int j = 0; j < length - 1; j++) {
+			if (*temp->data < *temp->prev->data) {
+				Swap(temp->prev, temp);
+			}
+			temp = temp->prev;
+		}
+	//}
+}
+/*
+individual backwards tail bubble sort
+
+*/
+
+
+
 /*
 
 split(&head,&length/2,&length/2+1,&tail)

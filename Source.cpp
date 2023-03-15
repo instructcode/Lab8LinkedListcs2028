@@ -15,6 +15,7 @@
 
 using namespace std;
 
+
 //prototypes
 InventoryItem* searchsku2(int SKU, LinkedList<InventoryItem>* lis);
 InventoryItem* searchsku(int SKU, InventoryItem* arr[], int numItems);
@@ -33,94 +34,24 @@ int main() {
 	//
 	//	1.  To DO: make datetime stuff work in available function, finish task 3 stuff (its commented out at end), make sure everything is compatible, add try and catches, fix issues where linked list is requested in a stackoverflow or underflow circumstances
 	// 1.5.   Finish Task3 at bottom, iron out the issues im uncertain about
-	//2. RESET   use it
+	//2. Make SEENEXt, SEEAT,SEEPREV work even when nullptrs happen
+	// 2.5 add more tries and catches
 	//3.  MAKE SURE WHEN SEENEXT and functions thats can transverse past the end of the list
 	// behave properly when such things happen
 	//4.Ok all the prework is done.  remainder issues is doing the time for available(), try catches, make sure everything works when stuff goes past the lsit end, it access a nullptr
-
+	//5. clean up options, delete commented stuff
+	// 6. merge sort for fun, implement it
 	//IT WORKS FINALLLLYYYY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
 
-	/*
-	LinkedList<int>* list = new LinkedList<int>();
-	Node<int>* temp;
-	bool BUGSFIXED = true;
-
-
-	list->AddItem(new int(7));
-	list->Display();
-	if (BUGSFIXED) {
-		temp = list->GetItem(new int(7), list->head);
-		cout << " Temp = " << *temp->data << endl;
-		delete temp->data;
-		delete temp;
-		temp = nullptr;
-		list->Display();
-	}
-
-	list->AddItem(new int(7));
-	list->AddItem(new int(2));
-	list->AddItem(new int(3));
-	for (size_t i = 100; i > 80; i--)
-	{
-		list->AddItem(new int(i * 6));
-	}
-	list->Display();
-
-
-	bool yes;
-	yes = list->Transverse(new int(594), list->head);
-	cout << yes << endl;
-	list->NotYetMergeSort();
-	list->Display();
-
-	//int* temp2;
-	temp = list->GetItem(new int(486), list->head);
-	cout << " Temp = " << *temp->data << endl;
-	delete temp->data;
-	delete temp;
-	temp = nullptr;
-	list->Display();
-
-	if (BUGSFIXED) {
-	temp = list->GetItem(new int(2), list->head);
-	cout << " Temp = " << *temp->data << endl;
-	delete temp->data;
-	delete temp;
-	temp = nullptr;
-	list->Display();
-}
-	if (BUGSFIXED) {
-		temp = list->GetItem(new int(600), list->head);
-		cout << " Temp = " << *temp->data << endl;
-		delete temp->data;
-		delete temp;
-		temp = nullptr;
-		list->Display();
-	}
-	//temp2 = list->SeeNext(new int(504), list->head);
-	//cout << " Temp = " << *temp2->data << endl;
-	list->Display();
-	temp = list -> SeeAt(new int(504), list->head);
-	cout << " Temp = " << *temp->data << endl;
-	list->Display();
-	int* temp3;
-	temp3 = list->SeeNext();
-	cout << " Temp = " << *temp3 << endl;
-	temp3 = list->SeeNext();
-	cout << " Temp = " << *temp3 << endl;
-	temp3 = list->SeePrev();
-	cout << " Temp = " << *temp3 << endl;
-	list->Display();
-	*/
-	//TASK 3 BELOW
 	
+	
+	//TASK 3 BELOW
+	system("Color 0A");
 	int userresponse;
 	char userresponse1;
-	int numberitems = 4;
-	//*****************************************************
-	// // number items only works if stuff gets taken out in order
-	//Node<InventoryItem>* temp;
+	//int numberitems = 4;
+	
 	
 	InventoryItem* temp2;
 	LinkedList<InventoryItem>* list = new LinkedList<InventoryItem>();
@@ -128,48 +59,24 @@ int main() {
 	//^^^^ Don't do node<inventoryItem
 
 
-
 	list->AddItem(new InventoryItem(3879, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
-		list->AddItem(new InventoryItem(2589, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
-		list->AddItem(new InventoryItem(1687, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
-		list->AddItem(new InventoryItem(9579, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
-		list->AddItem(new InventoryItem(5879, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
-			list->AddItem(new InventoryItem(589, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
-				list->AddItem(new InventoryItem(5687, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
-					list->AddItem(new InventoryItem(4579, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
+	list->AddItem(new InventoryItem(2589, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
+	list->AddItem(new InventoryItem(1687, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
+	list->AddItem(new InventoryItem(9579, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
+	list->AddItem(new InventoryItem(5879, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
+	list->AddItem(new InventoryItem(589, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
+	list->AddItem(new InventoryItem(5687, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
+	list->AddItem(new InventoryItem(4579, "PS5 gaming console", 600, "UOM whatever that is", 5, 20));
 		
-		/*
-	InventoryItem* arrg[30] = { new InventoryItem(5879, "PS5 gaming console", 600, "UOM whatever that is", 5, 20)
-	,new InventoryItem(589, "PS5 gaming console", 600, "UOM whatever that is", 5, 20)
-	,new InventoryItem(5687, "PS5 gaming console", 600, "UOM whatever that is", 5, 20)
-	,new InventoryItem(4579, "PS5 gaming console", 600, "UOM whatever that is", 5, 20) };
-	//we only have to manage the array if when we delete these pointers within the linked list
-	// the items dont get deleted
-	//if they do get deleted then the array is only then necessary to access all the SKU's
-	//easily, but there are non-obtrusive ways to access the SKU's, through search the list
-	// directly instead of storing them in an array that requires so much management
-	//so fragile too.
-
-	for (int i = 0; i < 4; i++) {
-
-		list->AddItem(arrg[i]);
-	}
-	*/
+		
 	list->NotYetMergeSort();
 	list->Display();
 
 	Node<InventoryItem>* temp3;
-	//temp3 = list->GetItem(searchsku(5879, arrg, numberitems), list->head); //uh oh u see the problem gEttIng an inventory item is only done by pointer
-	// but unless u create a inventory pointer to descriptoin table
-	//you wont be able to search it
-	// sollution is make something that can search by sku or description
-	//cout << temp3->data->GetPartInfo() << endl;
-
-
-
+	
 
 	int SKU;
-	int arrgindex;
+	//int arrgindex;
 	int quantity;
 	double price;
 	string uom;
@@ -278,17 +185,36 @@ int main() {
 		//or just use available() method
 		//arrgindex = indexsku(SKU, arrg, numberitems);
 		//Node<InventoryItem>* searchsku(int SKU, LinkedList<InventoryItem>*lis)
-		temp3 = list->GetItem(searchsku2(SKU, list), list->head);
-		cout << temp3->data->GetPartInfo() << " Is the item retrieved " << endl;
-		delete temp3->data;
-		temp3->data = nullptr;
-		//probably should make destructor handle this stuff automatically
-		delete temp3;
-		temp3 = nullptr;
-		//delete arrg[arrgindex];
-		//arrg[arrgindex] = nullptr;
-		//arraysquish(arrg, arrgindex, numberitems);
-		//numberitems--;
+
+		try {
+			InventoryItem* temp4 = searchsku2(SKU, list);
+			if (temp4 == nullptr)
+			{
+				throw LinkedList<InventoryItem>::ListNotFlow("Item not found in list");
+			}
+			else {
+
+
+				temp3 = list->GetItem(temp4, list->head);
+				if (temp3 == nullptr)
+				{
+					throw LinkedList<InventoryItem>::ListNotFlow("Item not found in list");
+				}
+				else {
+
+					cout << temp3->data->GetPartInfo() << " Is the item retrieved " << endl;
+					delete temp3->data;
+					temp3->data = nullptr;
+					//probably should make destructor handle this stuff automatically
+					delete temp3;
+					temp3 = nullptr;
+
+				}
+			}
+		}
+		catch(const LinkedList<InventoryItem>::ListNotFlow& e) {
+			std::cerr << "Caught MyClass::MyException: " << e.what() << std::endl;
+		}
 		break;
 		//add additional code to display the item to the user indicating its in stock
 	case 5:
