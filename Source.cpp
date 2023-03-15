@@ -13,7 +13,9 @@
 //ohhhhhh only include the .cpp when its a templated class
 
 
+
 using namespace std;
+
 
 
 //prototypes
@@ -31,15 +33,13 @@ int main() {
 	/**/
 	//
 	//TODO:
-	//
 	//	1.  To DO: make datetime stuff work in available function,  
 	// 
-	//2. Make SEENEXt, SEEAT,SEEPREV work even when nullptrs happen
-	// 2.5 add more tries and catches
-	//3.  MAKE SURE WHEN SEENEXT and functions thats can transverse past the end of the list
-	// behave properly when such things happen
-	//4.Ok all the prework is done.  remainder issues is doing the time for available(), try catches, make sure everything works when stuff goes past the lsit end, it access a nullptr
-	//5. clean up options, delete commented stuff
+	//
+	// 
+	//  
+	//
+	//5. 
 	// 6. merge sort for fun, implement it
 	//IT WORKS FINALLLLYYYY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
@@ -212,24 +212,65 @@ int main() {
 		break;
 	case 8:
 		cout << "See the next item in the list." <<endl;
+		try {
 		temp2 = list->SeeNext();
-		cout << temp2->GetPartInfo() <<endl; //this sees a pointer, probably wanna see SKU or description
+		if(temp2==nullptr)
+		{
+			throw LinkedList<InventoryItem>::ListNotFlow("Item not found in list");
+		}
+		else {
+			cout << temp2->GetPartInfo() << endl; //this sees a pointer, probably wanna see SKU or description
+		}
+		}
+		catch (const LinkedList<InventoryItem>::ListNotFlow& e) {
+			std::cerr << "Caught MyClass::MyException: " << e.what() << std::endl;
+		}
 		break;
 	case 9:
 		cout << "See the previous item in the list." <<endl;
+		try {
 		temp2 = list->SeePrev();
-		cout << temp2->GetPartInfo() <<endl; //this sees a pointers; probably wanna see SKU or description
+		if(temp2==nullptr)
+		{
+			throw LinkedList<InventoryItem>::ListNotFlow("Item not found in list");
+		}
+		else {
+			cout << temp2->GetPartInfo() << endl; //this sees a pointers; probably wanna see SKU or description
+		}
+		}
+		catch (const LinkedList<InventoryItem>::ListNotFlow& e) {
+			std::cerr << "Caught MyClass::MyException: " << e.what() << std::endl;
+		}
 		break;
 	case 10:
 		cout << "See the item at a specific location in the list." <<endl;
 		cout << "Type in the SKU of the item you want to see: "<<endl;
 		cin >> SKU;
+		try{
 		//might have to change function to pay attention to SKU, not pointer
-		temp = list->SeeAt(searchsku2(SKU, list), list->head);
-		cout << temp->data <<endl; //this sees a pointer, probably wanna see SKU or description
-		//also replace T* with some mangled mess of data->getSKU(SKU)
-		//*************************************************************
-		//DUNNO WHAT YAH WANT TO SEE , the DATA, pointer, SKU?
+				InventoryItem* temp5 = searchsku2(SKU, list);
+				if (temp5 == nullptr)
+				{
+					throw LinkedList<InventoryItem>::ListNotFlow("Item not found in list");
+				}
+				else {
+					temp = list->SeeAt(temp5, list->head);
+					if (temp == nullptr)
+					{
+						throw LinkedList<InventoryItem>::ListNotFlow("Item not found in list");
+					}
+					else {
+						//temp = list->SeeAt(searchsku2(SKU, list), list->head);
+						cout << temp->data << endl; //this sees a pointer, probably wanna see SKU or description
+						//also replace T* with some mangled mess of data->getSKU(SKU)
+						//*************************************************************
+						//DUNNO WHAT YAH WANT TO SEE , the DATA, pointer, SKU?
+					}
+				}
+		}
+		catch (const LinkedList<InventoryItem>::ListNotFlow& e) {
+			std::cerr << "Caught MyClass::MyException: " << e.what() << std::endl;
+		}
 		break;
 	case 11:
 		cout << "Reset the iterator view of the list to 0" <<endl;

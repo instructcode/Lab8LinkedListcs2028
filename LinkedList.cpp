@@ -193,7 +193,6 @@ T* LinkedList<T>::SeePrev(){
 			return iterator->data;
 		}
 		else {
-			throw "ListNotFlow";
 			return nullptr;
 		}
 	}
@@ -201,7 +200,7 @@ T* LinkedList<T>::SeePrev(){
 	//	return ptr;
 	//}
 	else {
-		throw "ListNotFlow";
+	
 		return nullptr;
 	}
 }
